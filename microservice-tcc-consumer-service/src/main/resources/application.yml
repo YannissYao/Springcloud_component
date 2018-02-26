@@ -1,0 +1,52 @@
+spring:
+  application:
+      name: microservice-tcc-consumer-service
+
+druid:
+      url: jdbc:mysql://localhost:3306/springCloud?characterEncoding=utf8&useSSL=true
+      driver-class: com.mysql.jdbc.Driver
+      username: root
+      password: 111111
+      initial-size: 1
+      min-idle: 1
+      max-active: 20
+      test-on-borrow: true
+      filters: stat,wall,slf4j
+
+
+server:
+  port: 8085
+
+
+eureka:
+  client:
+    healthcheck:
+      enabled: true
+    serviceUrl:
+      defaultZone: http://admin:admin@localhost:8761/eureka
+
+
+feign:
+  hystrix:
+    enabled: true
+
+
+mybatis:
+  type-aliases-package: com.springCloud.domain
+  mapper-locations: classpath:mapper/*.xml
+  mappers: com.springCloud.dao.**
+  configuration-properties:
+    offsetAsPageNum: true
+    rowBoundsWithCount: true
+    reasonable: true
+
+
+logging.level.org.springframework.security: DEBUG
+
+logging.leve.org.springframework: DEBUG
+
+
+
+
+
+

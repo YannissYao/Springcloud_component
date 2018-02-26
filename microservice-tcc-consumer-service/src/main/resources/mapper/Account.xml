@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.springCloud.dao.AccountDao">
+    <resultMap type="com.springCloud.domain.Account" id="Account">
+        <result property="acctId" column="acct_id"></result>
+        <result property="amount" column="amount"></result>
+        <result property="frozen" column="frozen"></result>
+    </resultMap>
+
+    <update id="increaseAmount">
+        UPDATE tb_account_two SET frozen = frozen + #{amount} WHERE acct_id = #{acctId}
+    </update>
+
+    <update id="confirm">
+        UPDATE tb_account_two SET amount = amount + #{amount}, frozen = frozen - #{amount} WHERE acct_id = #{acctId}
+    </update>
+
+    <update id="cancel">
+        UPDATE tb_account_two SET frozen = frozen - #{amount} WHERE acct_id = #{acctId}
+    </update>
+</mapper>
