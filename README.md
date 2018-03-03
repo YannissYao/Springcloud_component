@@ -13,6 +13,9 @@
 - `microservice-config-client-refresh-bus-service`:通过MQ刷新所有配置文件
 - `microservice-tcc-consumer-service`: Tcc-消费者
 - `microservice-tcc-provider-service`: Tcc-生产者
+- `microservice-sleuth-zipkin-service`: sleuth-zipkin调用链路追踪服务（UI界面9411端口）
+- `microservice-order-service-with-sleuthZipkin`: zipkin测试
+- `microservice-order-service-with-sleuthZipkin-backup`: zipkin测试被调用方
          
 
 OAUTH2中的角色：

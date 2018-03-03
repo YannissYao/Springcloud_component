@@ -1,1 +1,17 @@
 *.iml
+.idea
+microservice-config-client-refresh-bus-service/target
+*.jar
+*.original
+*.class
+*.lst
+microservice-oauth2-service/target/classes
+microservice-zuul-gateway-service/target
+microservice-tcc-consumer-service/target
+microservice-order-service-ribbon-hystrix/target
+microservice-oauth2-service/target
+microservice-config-service/target
+microservice-discovery-eureka-service/target
+microservice-order-service/target
+microservice-tcc-provider-service/target
+bytetcc/127_0_0_1_microservice_tcc_provider_service_8086
