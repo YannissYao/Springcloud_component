@@ -42,8 +42,8 @@ public class AccountController implements AccountService {
 
         System.out.println("DO Local Ipc  " + (result > 0 ? "SUCCESS" : "FAILURE"));
 
-        throw new RuntimeException("rollback!");
-//        return result;
+//        throw new RuntimeException("rollback!");
+        return result;
     }
 
     @CompensableConfirm

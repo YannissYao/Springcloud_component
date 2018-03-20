@@ -2,6 +2,17 @@ spring:
   application:
       name: microservice-tcc-consumer-service
 
+  rabbitmq:
+      host: localhost
+      port: 5672
+      username: guest
+      password: guest
+  zipkin:
+      service:
+        name: microservice-sleuth-zipkin-service
+  sleuth:
+      sampler:
+        percentage: 1.0
 druid:
       url: jdbc:mysql://localhost:3306/springCloud?characterEncoding=utf8&useSSL=true
       driver-class: com.mysql.jdbc.Driver
@@ -28,7 +39,7 @@ eureka:
 
 feign:
   hystrix:
-    enabled: false
+    enabled: true
 
 
 mybatis:
