@@ -3,6 +3,7 @@ package com.springCloud.config;
 import com.alibaba.druid.pool.DruidDataSource;
 import com.alibaba.druid.support.http.StatViewServlet;
 import com.alibaba.druid.support.http.WebStatFilter;
+import org.bytesoft.bytejta.supports.jdbc.LocalXADataSource;
 import org.bytesoft.bytetcc.supports.springcloud.config.SpringCloudConfiguration;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.web.servlet.FilterRegistrationBean;
@@ -69,6 +70,8 @@ public class DruidAutoConfig {
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
-        return dataSource;
+        LocalXADataSource localXADataSource = new LocalXADataSource();
+        localXADataSource.setDataSource(dataSource);
+        return localXADataSource;
     }
 }
