@@ -26,7 +26,7 @@ public class DemoController {
     @PreAuthorize("hasAuthority('ROLE_ADMIN')")
     @HystrixCommand(fallbackMethod = "demoFallback")
     public String getDemo() {
-        return restTemplate.getForObject("http://SERVICE-HELLOWORLD/", String.class);//这个serviceId不存在所以会走下面的的方法
+        return restTemplate.getForObject("http://SERVICE-HELLOWORLD/", String.class);//这个serviceId不存在所以会走demoFallback方法
     }
 
     @GetMapping("/getMovingParam")

@@ -19,6 +19,15 @@ spring:
       label: master
 
 
+  rabbitmq:
+    host: localhost
+    port: 5672
+    username: guest
+    password: guest
+
+  bus:
+    trace:
+      enabled: true
 
 
 server:
@@ -39,8 +48,10 @@ eureka:
 #    prefer-ip-address: true
 #    instance-id: ${spring.application.name}:${spring.cloud.client.ipAddress}:${server.port}
 
-
-
+#关闭安全验证
+management:
+  security:
+     enabled: false
 
 
 

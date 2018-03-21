@@ -10,16 +10,16 @@ spring:
       label: master
       profile: prod
 
-
   rabbitmq:
     host: localhost
     port: 5672
     username: guest
     password: guest
-#
-#    bus:
-#      trace:
-#        enabled: true
+
+  bus:
+    trace:
+      enabled: true
+
 eureka:
   client:
     healthcheck:
