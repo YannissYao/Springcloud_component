@@ -4,6 +4,8 @@ import com.netflix.hystrix.contrib.javanica.annotation.HystrixCommand;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.cloud.context.config.annotation.RefreshScope;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -23,8 +25,9 @@ public class DemoController {
     @GetMapping("/demo")
     @PreAuthorize("hasAuthority('ROLE_ADMIN')")
     @HystrixCommand(fallbackMethod = "demoFallback")
-    public String getDemo() {
-        return restTemplate.getForObject("http://SERVICE-HELLOWORLD/", String.class);//这个serviceId不存在所以会走下面的的方法
+    public ResponseEntity<String> getDemo() {
+      restTemplate.getForObject("http://SERVICE-HELLOWORLD/", String.class);//这个serviceId不存在所以会走demoFallback方法
+        return ResponseEntity.ok("OK");
     }
 
     @GetMapping("/getMovingParam")
@@ -32,7 +35,8 @@ public class DemoController {
         return param + "_2";
     }
 
-    public String demoFallback() {
-        return "Hystrix Execute Success_2....";
+
+    public ResponseEntity<String> demoFallback() {
+        return ResponseEntity.ok("RPC调用失败");
     }
 }
