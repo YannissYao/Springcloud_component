@@ -3,7 +3,10 @@ spring:
     active: ${SPRING_PROFILES_ACTIVE:prod}
   application:
       name: microservice-zuul-gateway-service
-#  cloud:
+  cloud:
+      loadbalancer:
+            retry:
+              enabled: true  #启动重试机制
 #    config:
 #      uri: http://${config.host:192.168.1.140}:${config.port:8888}
 
@@ -23,8 +26,11 @@ eureka:
     lease-renewal-interval-in-seconds: 10
 
 ribbon:
-    ConnectTimeout: 60000
-    ReadTimeout: 60000
+    OkToRetryOnAllOperations: false # 是否对所有请求都进行重试
+    MaxAutoRetriesNextServer: 2   #重试切换实例次数
+    MaxAutoRetries: 1     #重试次数
+    ConnectTimeout: 2000
+    ReadTimeout: 6000
 
 
 zuul:
@@ -55,4 +61,13 @@ security:
       user-info-uri: http://localhost:8080/uaa/user
       prefer-token-info: false
 
-hystrix.command.default.execution.isolation.thread.timeoutInMilliseconds: 70000
+#该时间必须大于Ribbon的readTimeOut，因为默认为一秒，会先触发断路器
+hystrix:
+  command:
+    default:
+      execution:
+        timeout:
+          enabled: true
+        isolation:
+          thread:
+            timeoutInMilliseconds: 7000

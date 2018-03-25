@@ -6,6 +6,8 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.cloud.context.config.annotation.RefreshScope;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.client.RestTemplate;
 
@@ -32,6 +34,14 @@ public class DemoController {
     @GetMapping("/getMovingParam")
     @PreAuthorize("permitAll()")
     public String getMovingParam() {
+        return param + "_1";
+    }
+
+    @PostMapping("insert")
+    @PreAuthorize("permitAll()")
+    public String insert(@RequestParam("param") String param) throws InterruptedException {
+        System.out.println(System.currentTimeMillis()+"  Insert_1");
+        Thread.sleep(8000);
         return param + "_1";
     }
 
