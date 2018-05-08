@@ -18,6 +18,9 @@
         <module>microservice-config-client-refresh-bus-service</module>
         <module>microservice-tcc-consumer-service</module>
         <module>microservice-tcc-provider-service</module>
+        <module>microservice-sleuth-zipkin-service</module>
+        <module>microservice-order-service-with-sleuthZipkin</module>
+        <module>microservice-order-service-with-sleuthZipkin-backup</module>
     </modules>
 
     <properties>

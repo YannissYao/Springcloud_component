@@ -11,7 +11,7 @@ spring:
       name: microservice-sleuth-zipkin-service
 
   sleuth:
-      enabled: true
+      enabled: false
 
   datasource:
       url: jdbc:mysql://localhost:3306/zipkin?characterEncoding=utf8&useSSL=false

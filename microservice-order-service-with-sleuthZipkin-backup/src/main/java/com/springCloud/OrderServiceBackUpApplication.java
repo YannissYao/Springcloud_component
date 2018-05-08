@@ -9,7 +9,6 @@ import org.springframework.cloud.netflix.eureka.EnableEurekaClient;
 public class OrderServiceBackUpApplication {
 
 
-
     public static void main(String[] args) {
         SpringApplication.run(OrderServiceBackUpApplication.class, args);
     }
