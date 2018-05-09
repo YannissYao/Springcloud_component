@@ -10,6 +10,7 @@
         <groupId>com.spring.cloud</groupId>
         <artifactId>root</artifactId>
         <version>0.0.1-SNAPSHOT</version>
+        <relativePath />
     </parent>
 
     <properties>
