@@ -6,7 +6,7 @@
     <groupId>com.spring.cloud</groupId>
     <artifactId>root</artifactId>
     <version>0.0.1-SNAPSHOT</version>
-    <packaging>pom</packaging>
+    <packaging>jar</packaging>
 
     <modules>
         <module>microservice-zuul-gateway-service</module>
