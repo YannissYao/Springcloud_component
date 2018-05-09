@@ -1,9 +1,0 @@
-FROM java:8
-
-# Create app directory
-RUN mkdir -p /usr/src/app
-
-WORKDIR /usr/src/app
-
-EXPOSE 8761
-CMD ["java", "-jar", "/${project.build.finalName}.jar"]

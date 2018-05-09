@@ -69,16 +69,13 @@
             <activation>
                 <activeByDefault>true</activeByDefault>
             </activation>
-
         </profile>
-
 
         <profile>
             <id>prod</id>
             <properties>
                 <port>7777</port>
             </properties>
-
         </profile>
     </profiles>
 </project>
