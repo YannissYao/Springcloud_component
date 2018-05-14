@@ -31,6 +31,8 @@ eureka:
   instance:
     lease-expiration-duration-in-seconds: 30
     lease-renewal-interval-in-seconds: 10
+    metadata-map:
+          version: 2.0
 
 
 
