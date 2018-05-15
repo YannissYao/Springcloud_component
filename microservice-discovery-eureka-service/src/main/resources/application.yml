@@ -18,7 +18,7 @@ spring:
     name: microservice-discovery-eureka-service
 security:
   basic:
-    enabled: false
+    enabled: true
   user:
     name: admin
     password: admin

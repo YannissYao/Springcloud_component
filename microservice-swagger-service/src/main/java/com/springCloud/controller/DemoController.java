@@ -35,7 +35,7 @@ public class DemoController {
      path	以地址的形式提交数据
      query	直接跟参数完成自动映射赋值
      body	以流的形式提交 仅支持POST
-     header	参数在request headers 里边提交.
+     header	参数在request headers 里边提交
      */
     @ApiOperation(value = "/demo2", tags = "GET测试接口")
     @ApiImplicitParam(paramType = "query", name = "param", value = "信息参数", required = true)
