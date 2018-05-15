@@ -21,6 +21,7 @@
         <module>microservice-sleuth-zipkin-service</module>
         <module>microservice-order-service-with-sleuthZipkin</module>
         <module>microservice-order-service-with-sleuthZipkin-backup</module>
+        <module>microservice-swagger-service</module>
     </modules>
 
     <properties>

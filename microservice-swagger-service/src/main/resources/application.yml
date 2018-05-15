@@ -1,0 +1,39 @@
+spring:
+  application:
+      name: microservice-order-service
+
+
+
+eureka:
+  client:
+    healthcheck:
+      enabled: true
+    serviceUrl:
+      defaultZone: http://admin:admin@localhost:8761/eureka
+  instance:
+      lease-expiration-duration-in-seconds: 30
+      lease-renewal-interval-in-seconds: 10
+      ip-address: true   #访问的路径变为IP地址
+
+server:
+    port: 8066
+
+
+management.security.enabled: false
+
+
+
+#security:
+#  oauth2:
+#    resource:
+#      id: microservice-order-service
+#      user-info-uri: http://localhost:8080/uaa/user
+#      prefer-token-info: false
+
+
+
+
+
+
+
+
