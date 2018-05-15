@@ -42,7 +42,7 @@ public class AccessFilter extends ZuulFilter {
         String version = request.getHeader("version");
         String url = request.getRequestURL().toString();//localhost:8080/order/demo  固定url格式    domain/serviceId/resource
         String serviceId = url.split("/")[3];
-        System.out.println("version : " + version);
+        log.info("version : " + version);
 
         log.info("version: {} access_token: {} serviceId: {}", version, access_token, serviceId);
 

@@ -1,6 +1,7 @@
 package com.springCloud.controller;
 
 import com.netflix.hystrix.contrib.javanica.annotation.HystrixCommand;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.cloud.context.config.annotation.RefreshScope;
@@ -16,6 +17,7 @@ import org.springframework.web.client.RestTemplate;
  */
 @RestController
 @RefreshScope
+@Slf4j
 public class DemoController {
 
     @Value("${logging.level.org.springframework.security}")
@@ -40,7 +42,7 @@ public class DemoController {
     @PostMapping("insert")
     @PreAuthorize("permitAll()")
     public String insert(@RequestParam("param") String param) throws InterruptedException {
-        System.out.println(System.currentTimeMillis()+"  Insert_1");
+        log.info(System.currentTimeMillis() + "  Insert_1");
         Thread.sleep(8000);
         return param + "_1";
     }

@@ -3,6 +3,7 @@ package com.springCloud.controller;
 import com.springCloud.dao.AccountDao;
 import com.springCloud.feign.service.AccountProviderService;
 import com.springCloud.service.AccountService;
+import lombok.extern.slf4j.Slf4j;
 import org.apache.ibatis.annotations.Param;
 import org.bytesoft.compensable.Compensable;
 import org.bytesoft.compensable.CompensableCancel;
@@ -19,6 +20,7 @@ import org.springframework.web.bind.annotation.RestController;
  */
 @Compensable(interfaceClass = AccountService.class, simplified = true)
 @RestController
+@Slf4j
 public class AccountController implements AccountService {
 
 
@@ -36,11 +38,11 @@ public class AccountController implements AccountService {
 
         int result = accountProviderService.increaseAmount(acctId, amount);//rpc -1
 
-        System.out.println("DO Remoting  Rpc  " + (result > 0 ? "SUCCESS" : "FAILURE"));
+        log.info("DO Remoting  Rpc  " + (result > 0 ? "SUCCESS" : "FAILURE"));
 
         result = accountDao.increaseAmount(acctId, amount); //local +1
 
-        System.out.println("DO Local Ipc  " + (result > 0 ? "SUCCESS" : "FAILURE"));
+        log.info("DO Local Ipc  " + (result > 0 ? "SUCCESS" : "FAILURE"));
 
 //        throw new RuntimeException("rollback!");
         return result;
