@@ -13,6 +13,8 @@ import org.springframework.security.oauth2.config.annotation.web.configurers.Aut
 import org.springframework.security.oauth2.config.annotation.web.configurers.AuthorizationServerSecurityConfigurer;
 import org.springframework.security.oauth2.provider.token.store.redis.RedisTokenStore;
 
+import java.text.SimpleDateFormat;
+
 /**
  * Created by Joeysin on 2017/6/9.
  */
@@ -30,7 +32,6 @@ public class AuthorizationServerConfig extends AuthorizationServerConfigurerAdap
     public RedisTokenStore tokenStore() {
         return new RedisTokenStore(connectionFactory);
     }
-
 
     @Override
     public void configure(AuthorizationServerEndpointsConfigurer endpoints) throws Exception {

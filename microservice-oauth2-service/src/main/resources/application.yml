@@ -2,26 +2,61 @@ spring:
     application:
       name: microservice-oauth2-service
 
+    redis:
+      host: redis
+      port: 6379
+#    cloud:
+#     config:
+#           discovery:
+#             enabled: true
+#             service-id: microservice-config-service
+#           label: master
+#           profile: prod
+
+druid:
+      url: jdbc:mysql://mysql:3306/zuul_oauth2?characterEncoding=utf8&useSSL=true
+      driver-class: com.mysql.jdbc.Driver
+      username: root
+      password: 111111
+      initial-size: 1
+      min-idle: 1
+      max-active: 20
+      test-on-borrow: true
+      filters: stat,wall,slf4j
 
 
-    cloud:
-     config:
-           discovery:
-             enabled: true
-             service-id: microservice-config-service
-           label: master
-           profile: prod
 
+
+server:
+  port: 9998
 
 eureka:
   client:
     healthcheck:
       enabled: true
     serviceUrl:
-      defaultZone: http://admin:admin@localhost:8761/eureka
+      defaultZone: http://admin:admin@eureka:8761/eureka
   instance:
       lease-expiration-duration-in-seconds: 30
       lease-renewal-interval-in-seconds: 10
+
+mybatis:
+  type-aliases-package: com.springCloud.domain
+  mapper-locations: classpath:mapper/*.xml
+  mappers: com.springCloud.dao.**
+  configuration-properties:
+    offsetAsPageNum: true
+    rowBoundsWithCount: true
+    reasonable: true
+
+security:
+  oauth2:
+    resource:
+      filter-order: 3
+
+logging.level.org.springframework.security: DEBUG
+
+logging.leve.org.springframework: DEBUG
 
 
 

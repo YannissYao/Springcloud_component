@@ -1,0 +1,114 @@
+version: "3"
+
+services:
+
+#      config:
+#        build: ./microservice-config-service
+#        networks:
+#            - mybridge
+#        links:
+#           - eureka
+#           - rabbitmq
+#        hostname: config
+#        image: config
+#        container_name: config
+
+      eureka:
+        build: ./microservice-discovery-eureka-service
+        networks:
+           - mybridge
+        ports:
+           - "8761:8761"
+        hostname: eureka
+        image: eureka
+        container_name: eureka
+
+      oauth2:
+        build: ./microservice-oauth2-service
+        networks:
+          - mybridge
+        links:
+          - eureka
+          - mysql:zuul_oauth2
+          - redis
+#         - config
+        hostname: oauth2
+        image: oauth2
+        container_name: oauth2
+
+      zuul:
+        build: ./microservice-zuul-gateway-service
+        networks:
+          - mybridge
+        links:
+          - eureka
+        ports:
+          - "8080:8080"
+        hostname: zuul
+        image: zuul
+        container_name: zuul
+
+      order:
+        build: ./microservice-order-service
+        networks:
+          - mybridge
+        links:
+          - eureka
+#          - config
+          - rabbitmq
+          - oauth2
+        hostname: order
+        image: order
+        container_name: order
+
+      #数据持久化====================================
+      redis:
+        image: redis
+        networks:
+          - mybridge
+        expose:
+          - 6379
+        volumes:
+          - "redis-data:/data"
+        container_name: redis
+        hostname: redis
+
+      mysql:
+        image: mysql:5.6
+        restart: always
+        container_name: mysql
+        networks:
+          - mybridge
+#        privileged: true
+        volumes:
+          - "mysql-data:/var/lib/mysql"
+        environment:
+          MYSQL_ROOT_PASSWORD: 111111
+        hostname: mysql
+
+      rabbitmq:
+        image: rabbitmq:3.6-management
+        networks:
+          - mybridge
+        container_name: rabbitmq
+        volumes:
+          - "rabbitmq-data:/var/lib/rabbitmq/"
+        ports:
+          - "15672:15672"
+        hostname: rabbitmq
+
+
+
+
+volumes:
+  redis-data:
+  mysql-data:
+  rabbitmq-data:
+
+networks:
+  mybridge:
+
+
+
+
+

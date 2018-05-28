@@ -9,19 +9,19 @@
     <packaging>pom</packaging>
 
     <modules>
-        <module>microservice-zuul-gateway-service</module>
-        <module>microservice-oauth2-service</module>
-        <module>microservice-discovery-eureka-service</module>
-        <module>microservice-order-service</module>
-        <module>microservice-order-service-ribbon-hystrix</module>
-        <module>microservice-config-service</module>
-        <module>microservice-config-client-refresh-bus-service</module>
-        <module>microservice-tcc-consumer-service</module>
-        <module>microservice-tcc-provider-service</module>
-        <module>microservice-sleuth-zipkin-service</module>
-        <module>microservice-order-service-with-sleuthZipkin</module>
-        <module>microservice-order-service-with-sleuthZipkin-backup</module>
-        <module>microservice-swagger-service</module>
+        <module>./microservice-discovery-eureka-service</module>
+        <module>./microservice-config-service</module>
+        <module>./microservice-oauth2-service</module>
+        <module>./microservice-zuul-gateway-service</module>
+        <module>./microservice-order-service</module>
+        <module>./microservice-order-service-ribbon-hystrix</module>
+        <module>./microservice-config-client-refresh-bus-service</module>
+        <module>./microservice-tcc-consumer-service</module>
+        <module>./microservice-tcc-provider-service</module>
+        <module>./microservice-sleuth-zipkin-service</module>
+        <module>./microservice-order-service-with-sleuthZipkin</module>
+        <module>./microservice-order-service-with-sleuthZipkin-backup</module>
+        <module>./microservice-swagger-service</module>
     </modules>
 
     <properties>

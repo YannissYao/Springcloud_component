@@ -2,16 +2,18 @@ spring:
   application:
       name: microservice-order-service
 
-  cloud:
-    config:
-      discovery:
-        enabled: true
-        service-id: microservice-config-service
-      label: master
-      profile: prod
+#  cloud:
+#    config.:
+#      uri: http://config:8888/
+#      label: master
+#      profile: prod
+#     discovery:
+#        enabled: true
+#        service-id: microservice-config-service
+
 
   rabbitmq:
-    host: localhost
+    host: rabbitmq
     port: 5672
     username: guest
     password: guest
@@ -25,14 +27,27 @@ eureka:
     healthcheck:
       enabled: true
     serviceUrl:
-      defaultZone: http://admin:admin@localhost:8761/eureka
+      defaultZone: http://admin:admin@eureka:8761/eureka
   instance:
       lease-expiration-duration-in-seconds: 30
       lease-renewal-interval-in-seconds: 10
       metadata-map:
               version: 1.0
+
+security:
+  oauth2:
+    resource:
+      id: microservice-order-service
+      user-info-uri: http://zuul:8080/uaa/user
+      prefer-token-info: false
+
+
 server:
     port: 8083
+
+management.security.enabled: false
+feign.hystirx.enable: true
+logging.level.org.springframework.security: INFO
 
 
 
