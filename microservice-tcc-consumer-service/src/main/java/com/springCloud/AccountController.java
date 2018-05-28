@@ -1,4 +1,4 @@
-package com.springCloud.controller;
+package com.springCloud;
 
 import com.springCloud.dao.AccountDao;
 import com.springCloud.feign.service.AccountProviderService;

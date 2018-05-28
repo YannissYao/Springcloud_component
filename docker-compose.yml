@@ -61,6 +61,45 @@ services:
         image: order
         container_name: order
 
+#zipkin-module
+#      zipkin-server:
+#        build: ./microservice-sleuth-zipkin-service
+#        networks:
+#          - mybridge
+#        links:
+#          - eureka
+#          - mysql:zipkin
+#          - rabbitmq
+#        ports:
+#          - "9411:9411"
+#        hostname: zipkin-server
+#        image: zipkin-server
+#        container_name: zipkin-server
+#
+#      zipkin-consumer:
+#        build: ./microservice-order-service-with-sleuthZipkin
+#        networks:
+#          - mybridge
+#        links:
+#          - eureka
+#          - rabbitmq
+#        ports:
+#          - "8085:8085"
+#        hostname: zipkin-consumer
+#        image: zipkin-consumer
+#        container_name: zipkin-consumer
+#
+#      zipkin-provider:
+#        build: ./microservice-order-service-with-sleuthZipkin-backup
+#        networks:
+#          - mybridge
+#        links:
+#          - eureka
+#          - rabbitmq
+#        hostname:  zipkin-provider
+#        image:  zipkin-provider
+#        container_name:  zipkin-provider
+
       #数据持久化====================================
       redis:
         image: redis

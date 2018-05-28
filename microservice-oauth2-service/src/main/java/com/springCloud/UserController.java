@@ -1,4 +1,4 @@
-package com.springCloud.controller;
+package com.springCloud;
 
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;

@@ -35,7 +35,7 @@ public class SwaggerConfig {
         return new Docket(DocumentationType.SWAGGER_2)
                 .apiInfo(apiInfo())
                 .select()
-                .apis(RequestHandlerSelectors.basePackage("com.springCloud.controller")) //Controller所在的package
+                .apis(RequestHandlerSelectors.basePackage("com.springCloud.com.springCloud.controller")) //Controller所在的package
                 .paths(PathSelectors.any())
                 .build()
                 .globalOperationParameters(list);

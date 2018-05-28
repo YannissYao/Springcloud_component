@@ -1,4 +1,4 @@
-package com.springCloud.controller;
+package com.springCloud;
 
 import com.springCloud.domain.Domain;
 import io.swagger.annotations.Api;
