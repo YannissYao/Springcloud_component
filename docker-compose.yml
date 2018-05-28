@@ -54,9 +54,9 @@ services:
           - mybridge
         links:
           - eureka
-#          - config
           - rabbitmq
-          - oauth2
+#         - config
+#         - zuul
         hostname: order
         image: order
         container_name: order
