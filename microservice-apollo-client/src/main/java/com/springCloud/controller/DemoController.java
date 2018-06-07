@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.RestController;
 @RefreshScope
 public class DemoController {
 
-    @Value("${qq.qq}")
+    @Value("${a}")
     private String refreshScope;
 
     @GetMapping("demo")

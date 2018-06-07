@@ -16,3 +16,4 @@ microservice-order-service/target
 microservice-tcc-provider-service/target
 bytetcc/127_0_0_1_microservice_tcc_provider_service_8086
 *.log
+microservice-apollo-client/target
