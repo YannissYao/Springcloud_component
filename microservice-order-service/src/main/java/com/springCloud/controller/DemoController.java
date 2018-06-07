@@ -1,4 +1,4 @@
-package com.springCloud;
+package com.springCloud.controller;
 
 import com.netflix.hystrix.contrib.javanica.annotation.HystrixCommand;
 import lombok.extern.slf4j.Slf4j;
@@ -12,6 +12,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.client.RestTemplate;
 
+import javax.servlet.http.HttpServletRequest;
+
 /**
  * Created by Joeysin on 2017/1/31.
  */
@@ -22,9 +24,9 @@ public class DemoController {
 
     @Value("${logging.level.org.springframework.security}")
     private String param;
-
     @Autowired
     private RestTemplate restTemplate;
+
 
     @GetMapping("/demo")
     @PreAuthorize("hasAuthority('ROLE_ADMIN')")
@@ -33,10 +35,11 @@ public class DemoController {
         return restTemplate.getForObject("http://SERVICE-HELLOWORLD/", String.class);//这个serviceId不存在所以会走demoFallback方法
     }
 
-    @GetMapping("/getMovingParam")
+    @GetMapping("/balance")
     @PreAuthorize("permitAll()")
-    public String getMovingParam() {
-        return param + "_1";
+    public String getMovingParam(HttpServletRequest request) {
+        System.out.println(System.currentTimeMillis());
+        return request.getRemoteAddr();
     }
 
     @PostMapping("insert")

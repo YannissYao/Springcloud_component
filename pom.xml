@@ -22,6 +22,7 @@
         <module>./microservice-order-service-with-sleuthZipkin</module>
         <module>./microservice-order-service-with-sleuthZipkin-backup</module>
         <module>./microservice-swagger-service</module>
+        <module>./microservice-apollo-client</module>
     </modules>
 
     <properties>

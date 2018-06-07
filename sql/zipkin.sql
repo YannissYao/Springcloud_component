@@ -13,8 +13,14 @@
 
  Date: 02/26/2018 15:51:15 PM
 */
+# Create Database
+# ------------------------------------------------------------
+CREATE DATABASE IF NOT EXISTS zipkin DEFAULT CHARACTER SET = utf8mb4;
 
-SET NAMES utf8mb4;
+Use zipkin;
+
+# Dump of table app
+# ------------------------------------------------------------
 SET FOREIGN_KEY_CHECKS = 0;
 
 -- ----------------------------
