@@ -13,21 +13,17 @@ spring:
 
 
   rabbitmq:
-    host: rabbitmq
+    host: localhost
     port: 5672
     username: guest
     password: guest
-
-  bus:
-    trace:
-      enabled: true
 
 eureka:
   client:
     healthcheck:
       enabled: true
     serviceUrl:
-      defaultZone: http://admin:admin@eureka:8761/eureka
+      defaultZone: http://admin:admin@localhost:8761/eureka
   instance:
       lease-expiration-duration-in-seconds: 30
       lease-renewal-interval-in-seconds: 10
@@ -45,7 +41,7 @@ security:
 server:
     port: 8083
 
-management.security.enabled: false
+#management.security.enabled: false
 feign.hystirx.enable: true
 logging.level.org.springframework.security: INFO
 

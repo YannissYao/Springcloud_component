@@ -13,8 +13,6 @@ import org.springframework.security.oauth2.config.annotation.web.configurers.Aut
 import org.springframework.security.oauth2.config.annotation.web.configurers.AuthorizationServerSecurityConfigurer;
 import org.springframework.security.oauth2.provider.token.store.redis.RedisTokenStore;
 
-import java.text.SimpleDateFormat;
-
 /**
  * Created by Joeysin on 2017/6/9.
  */
@@ -51,13 +49,15 @@ public class AuthorizationServerConfig extends AuthorizationServerConfigurerAdap
     @Override
     public void configure(ClientDetailsServiceConfigurer clients) throws Exception {
         clients.inMemory()
-                .withClient("android")
-                .scopes("xx")
-                .secret("android")
+                .withClient("android")//client_id用来标识客户的Id
+                .scopes("read", "write") //允许授权范围
+                .authorities("ROLE_ADMIN","ROLE_USER")//客户端可以使用的权限
+                .secret("secret")//secret客户端安全码
                 .authorizedGrantTypes("password", "authorization_code", "refresh_token")
                 .and()
                 .withClient("webapp")
-                .scopes("xx")
                 .authorizedGrantTypes("implicit");
     }
+
+
 }

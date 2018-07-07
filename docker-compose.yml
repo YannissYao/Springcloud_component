@@ -46,27 +46,38 @@ services:
 #        volumes:
 #          - /var/lib/mysql
 
-      apollo-client:
-        build: ./microservice-apollo-client
-        networks:
-           - mybridge
-        links:
-           - eureka
-           - mysql:zuul_oauth2
-           - apollo-config-server
-        hostname: apollo-client
-        image: apollo-client
-        container_name: apollo-client
-
-#      eureka:
-#        build: ./microservice-discovery-eureka-service
+#      apollo-client:
+#        build: ./microservice-apollo-client
 #        networks:
 #           - mybridge
-#        ports:
-#           - "8761:8761"
-#        hostname: eureka
-#        image: eureka
-#        container_name: eureka
+#        links:
+#           - apollo-config-server
+#        hostname: apollo-client
+#        image: apollo-client
+#        container_name: apollo-client
+
+      eureka:
+        build: ./microservice-discovery-eureka-service
+        networks:
+           - mybridge
+        ports:
+            - "8761:8761"
+        hostname: eureka
+        image: eureka
+        container_name: eureka
+
+
+      admin-server:
+        build: ./microservice-metrics-admin-server
+        networks:
+            - mybridge
+        links:
+            - eureka
+        ports:
+            - "8788:8788"
+        hostname: admin-server
+        image: admin-server
+        container_name: admin-server
 
 #      oauth2:
 #        build: ./microservice-oauth2-service
@@ -80,7 +91,7 @@ services:
 #        hostname: oauth2
 #        image: oauth2
 #        container_name: oauth2
-#
+
 #      zuul:
 #        build: ./microservice-zuul-gateway-service
 #        networks:
@@ -101,10 +112,10 @@ services:
 #          - eureka
 #          - rabbitmq
 ##         - config
-##         - zuul
+#          - zuul
 #        hostname: order
 #        image: order
-#        container_name: order  定义后无法使用<scale>水平扩展
+#        container_name: order  #定义后无法使用<scale>水平扩展
 
 #zipkin-module
 #      zipkin-server:
@@ -163,7 +174,7 @@ services:
 #        container_name: mysql
 #        networks:
 #          - mybridge
-##        privileged: true
+#        privileged: true
 #        volumes:
 #          - ./sql:/docker-entrypoint-initdb.d
 #        environment:

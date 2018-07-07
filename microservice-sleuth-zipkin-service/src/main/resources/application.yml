@@ -2,6 +2,7 @@ server:
   port: 9411
 
 #表示zipkin数据存储方式是mysql
+# 新版本参考http://www.spring4all.com/article/1284
 zipkin:
   storage:
     type: mysql
@@ -18,7 +19,7 @@ spring:
       username: root
       password: 111111
       driver-class-name: com.mysql.jdbc.Driver
-      initialize: true
+#      initialize: true
       continue-on-error: true
 
   rabbitmq:

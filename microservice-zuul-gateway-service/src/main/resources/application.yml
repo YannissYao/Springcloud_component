@@ -10,6 +10,18 @@ spring:
 #    config:
 #      uri: http://${config.host:192.168.1.140}:${config.port:8888}
 
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: '*'
+        exclude:
+          - '/scheduledtasks'
+  endpoint:
+    health:
+      show-details: always
+
 server:
   port: 8080
 
@@ -20,7 +32,7 @@ eureka:
     healthcheck:
       enabled: true
     serviceUrl:
-      defaultZone: http://admin:admin@eureka:8761/eureka
+      defaultZone: http://admin:admin@localhost:8761/eureka
   instance:
     lease-expiration-duration-in-seconds: 30
     lease-renewal-interval-in-seconds: 10
@@ -51,15 +63,15 @@ zuul:
 
   add-proxy-headers: true
 
-security:
-  oauth2:
-    client:
-      access-token-uri: http://127.0.0.1:8080/uaa/oauth/token
-      user-authorization-uri: http://127.0.0.1:8080/uaa/oauth/authorize
-      client-id: webapp
-    resource:
-      user-info-uri: http://127.0.0.1:8080/uaa/user
-      prefer-token-info: false
+#security:
+#  oauth2:
+#    client:
+#      access-token-uri: http://127.0.0.1:8080/uaa/oauth/token
+#      user-authorization-uri: http://127.0.0.1:8080/uaa/oauth/authorize
+#      client-id: webapp
+#    resource:
+#      user-info-uri: http://127.0.0.1:8080/uaa/user
+#      prefer-token-info: false
 
 #该时间必须大于Ribbon的readTimeOut，因为默认为一秒，会先触发断路器
 hystrix:

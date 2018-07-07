@@ -1,17 +1,16 @@
 package com.springCloud.config;
 
-//import org.springframework.beans.factory.annotation.Autowired;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
-//import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.oauth2.config.annotation.web.configuration.EnableResourceServer;
 import org.springframework.security.oauth2.config.annotation.web.configuration.ResourceServerConfigurerAdapter;
-//import org.springframework.security.oauth2.config.annotation.web.configurers.ResourceServerSecurityConfigurer;
-//import org.springframework.security.oauth2.provider.token.TokenStore;
-//import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
-//import org.springframework.web.filter.CorsFilter;
 
 import javax.servlet.http.HttpServletResponse;
+
 
 /**
  * Created by Joeysin on 2017/6/9.
@@ -19,17 +18,41 @@ import javax.servlet.http.HttpServletResponse;
 @Configuration
 @EnableResourceServer
 public class ResourceServerConfig extends ResourceServerConfigurerAdapter {
+    private Logger logger = LoggerFactory.getLogger(ResourceServerConfig.class);
+
+    @Autowired
+    private CustomAuthenticationEntryPoint customAuthenticationEntryPoint;
+
+    @Bean
+    public CustomLogoutSuccessHandler customLogoutSuccessHandler() {
+        return new CustomLogoutSuccessHandler();
+    }
+
 
     @Override
     public void configure(HttpSecurity http) throws Exception {
-        http
-                .csrf().disable()
-                .exceptionHandling()
-                .authenticationEntryPoint((request, response, authException) -> response.sendError(HttpServletResponse.SC_UNAUTHORIZED))
-            .and()
+//        http
+//                .csrf().disable()
+//                .authorizeRequests()
+//                .antMatchers("/actuator/health").permitAll()
+//                .antMatchers("/actuator/info").permitAll()
+//                .anyRequest().permitAll()
+//                .and()
+//                .exceptionHandling()
+//                .authenticationEntryPoint((request, response, authException) -> response.sendError(HttpServletResponse.SC_UNAUTHORIZED))//implements AuthenticationEntryPoint
+//                .and()
+//                .httpBasic();
+
+        http.exceptionHandling()
+                .authenticationEntryPoint(customAuthenticationEntryPoint)
+                .and()
+                .logout()
+                .logoutUrl("/oauth/logout")
+                .logoutSuccessHandler(customLogoutSuccessHandler())
+                .and()
                 .authorizeRequests()
-                .anyRequest().authenticated()
-            .and()
-                .httpBasic();
+                .antMatchers("/actuator/**").permitAll()
+                .antMatchers("/secure/**").authenticated();
+
     }
 }

@@ -1,0 +1,51 @@
+spring:
+  application:
+    name: spring-boot-admin
+  profiles:
+    active:
+      - secure
+server:
+  port: 8788
+
+
+
+# tag::configuration-eureka[]
+eureka:   #&lt;1&gt;
+  instance:
+    leaseRenewalIntervalInSeconds: 10
+    health-check-url-path: /actuator/health
+  client:
+    registryFetchIntervalSeconds: 5
+    serviceUrl:
+      defaultZone: http://admin:admin@localhost:8761/eureka/
+    enabled: true
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+  endpoint:
+    health:
+      show-details: ALWAYS
+# end::configuration-eureka[]
+
+
+---
+spring:
+  profiles: insecure
+
+---
+spring:
+  profiles: secure
+  security:
+    user:
+      name: "admin"
+      password: "admin"
+eureka:
+  instance:
+    metadata-map:
+      user.name: "admin"         #These two are needed so that the server
+      user.password: "admin"
+
+
